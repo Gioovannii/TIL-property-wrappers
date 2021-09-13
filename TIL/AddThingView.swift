@@ -34,16 +34,25 @@ import SwiftUI
 
 struct AddThingView: View {
     @Environment(\.presentationMode) var presentationMode
-    @Binding var someThings: ThingStore
+    @ObservedObject var someThings: ThingStore
+    @State private var thing = ""
+    
     
     var body: some View {
         VStack {
             Button("Done") {
                 presentationMode.wrappedValue.dismiss()
-                someThings.things.append("FOMO")
+                if !thing.isEmpty {
+                    someThings.things.append(thing)
+                }
             }
+            TextField("Thing I learned", text: $thing)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                .disableAutocorrection(true)
             Spacer()
         }
+        .environment(\.textCase, nil)
     }
 }
 
@@ -52,3 +61,4 @@ struct AddThingView_Previews: PreviewProvider {
         AddThingView(someThings: .constant(ThingStore()))
     }
 }
+
