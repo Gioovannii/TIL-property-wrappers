@@ -40,6 +40,7 @@ struct AddThingView: View {
         VStack {
             Button("Done") {
                 presentationMode.wrappedValue.dismiss()
+                someThings.things.append("FOMO")
             }
             Spacer()
         }
@@ -48,6 +49,6 @@ struct AddThingView: View {
 
 struct AddThingView_Previews: PreviewProvider {
     static var previews: some View {
-        AddThingView()
+        AddThingView(someThings: .constant(ThingStore()))
     }
 }
