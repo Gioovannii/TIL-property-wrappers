@@ -58,7 +58,7 @@ struct AddThingView: View {
 
 struct AddThingView_Previews: PreviewProvider {
     static var previews: some View {
-        AddThingView(someThings: .constant(ThingStore()))
+        AddThingView(someThings: ThingStore())
     }
 }
 
